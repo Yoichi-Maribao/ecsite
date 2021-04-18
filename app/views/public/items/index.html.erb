@@ -1,0 +1,9 @@
+<div class="col">
+  <h1>商品一覧</h1><%= "(全#{@items.count}件)" %>
+  <% @items.each do |item| %>
+    <div class="item">
+      <span><%= item.name %></span><br>
+      <span>¥<%= item.price.to_s(:delimited) %></span>
+    </div>
+  <% end %>
+</div>

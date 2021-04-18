@@ -6,11 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create!(
-  :email => "admin@email.com",
-  :password => "aaaaaa"
-)
+# Admin.create!(
+#   :email => "admin@email.com",
+#   :password => "aaaaaa"
+# )
 
+Item.create!(
+  :genre_id => 1,
+  :name => "シフォンケーキ",
+  :description => "みんな大好きシフォンケーキです。ほっぺたがおちるくらい美味しいです。",
+  :image_id => nil,
+  :price => 600
+)
 # End_User.create!(
 #   last_name: "試験"
 #   first_name: "太郎"

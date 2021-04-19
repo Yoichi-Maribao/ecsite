@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'cart_items/index'
+  end
   devise_for :admins, path: :admin, skip: 'registrations'
   devise_for :end_users
 
@@ -20,6 +23,8 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe'
     patch 'customers/withdraw', to: 'customers#withdraw'
     resources :items, only: [:index, :show]
+    delete 'cart_items/destroy_all', to: 'cart_items#destroy_all'
+    resources :cart_items, except: [:new, :show, :edit]
   end
 
   root to: 'public/homes#top'

@@ -5,5 +5,5 @@ class EndUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :last_name, :first_name, :kana_last_name, :kana_first_name, :postcode, :phone_number, presence: true
-
+  has_many :cart_items
 end

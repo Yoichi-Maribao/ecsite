@@ -6,4 +6,6 @@ class EndUser < ApplicationRecord
 
   validates :last_name, :first_name, :kana_last_name, :kana_first_name, :postcode, :phone_number, presence: true
   has_many :cart_items
+  has_many :orders
+  has_many :addresses
 end

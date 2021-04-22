@@ -24,3 +24,14 @@
   -o-box-shadow: 1px 1px  rgba(0,0,0,0.6);
   border-radius:10px;
 }
+
+.no-spin::-webkit-inner-spin-button,
+.no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance:textfield;
+}
+
+.table-sm td {
+  line-height: 50px;
+}

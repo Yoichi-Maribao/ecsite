@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'cart_items/index'
-  end
   devise_for :admins, path: :admin, skip: 'registrations'
   devise_for :end_users
 
@@ -14,6 +11,7 @@ Rails.application.routes.draw do
     resources :customers, except: [:create, :new, :destroy]
     resources :genres, except: [:new, :show]
     resources :items, except: :destroy
+    resources :orders, only: [:show, :update, :index]
   end
 
   scope module: :public do
@@ -25,6 +23,13 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     delete 'cart_items/destroy_all', to: 'cart_items#destroy_all'
     resources :cart_items, except: [:new, :show, :edit]
+    get 'orders/thanks', to: 'orders#thanks'
+    resources :orders, except: [:edit, :update, :destroy] do
+      # scope module:  :orders do
+      post 'confirm', to: 'orders#confirm'
+      # end
+    end
+    resources :addresses, except: [:show, :new]
   end
 
   root to: 'public/homes#top'

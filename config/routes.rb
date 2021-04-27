@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :genres, except: [:new, :show]
     resources :items, except: :destroy
     resources :orders, only: [:show, :update, :index]
+    resources :order_details, only: :update
   end
 
   scope module: :public do
@@ -25,9 +26,7 @@ Rails.application.routes.draw do
     resources :cart_items, except: [:new, :show, :edit]
     get 'orders/thanks', to: 'orders#thanks'
     resources :orders, except: [:edit, :update, :destroy] do
-      # scope module:  :orders do
-      post 'confirm', to: 'orders#confirm'
-      # end
+    post 'confirm', to: 'orders#confirm'
     end
     resources :addresses, except: [:show, :new]
   end

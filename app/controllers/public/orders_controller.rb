@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :cart_check, only: :new
   def new
     @order = Order.new
     @user = current_end_user
@@ -28,6 +29,10 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
+    @order.end_user.cart_items.map do |ci|
+      @order_detail = OrderDetail.create({order_id: @order.id, item_id: ci.item_id, amount: ci.amount, tax_price: ci.item.add_tax * ci.amount })
+    end
+    @order.end_user.cart_items.destroy_all
     redirect_to orders_thanks_path
   end
 
@@ -44,5 +49,12 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:postcode, :address, :name, :payment_method, :total_payment, :end_user_id)
   end
+
+  def cart_check
+    unless current_end_user.cart_items.exists?
+      redirect_to cart_items_path, alert: "カートに商品が入っていません。"
+    end
+  end
+
 
 end

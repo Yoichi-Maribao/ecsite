@@ -24,7 +24,6 @@
         <%= f.label "登録済住所から選択" %>
         <div class="col">
           <%= f.collection_select(:id, current_end_user.addresses, :id, :unite)%>
-          <%#<%= f.select :address, current_end_user.addresses.all.map{|addr| ["〒#{addr.postcode} #{addr.address} #{addr.name}", addr.id ]} %>
         </div>
       </div>
       <div class="form-group">

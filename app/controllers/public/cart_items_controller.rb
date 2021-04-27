@@ -26,11 +26,6 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @cart_item = CartItem.new(cart_item_params)
-    @order_detail = OrderDetail.new
-    @order_detail.item_id = @cart_item.item_id
-    @order_detail.amount = @cart_item.amount
-    @order_detail.tax_price = @cart_item.subtotal
-    binding.pry
     cart_item = current_end_user.cart_items.find_by(item_id: params[:cart_item][:item_id])
     if cart_item.present?
       new_amount = cart_item.amount + @cart_item.amount
@@ -45,7 +40,7 @@ class Public::CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :amount)
+    params.require(:cart_item).permit(:item_id, :amount, :tax_price)
   end
 
 end

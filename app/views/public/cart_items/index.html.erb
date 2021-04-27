@@ -1,4 +1,7 @@
 <div class="col">
+  <div class="text-danger">
+    <%= flash[:alert] %>
+  </div>
   <div class="row mb-3">
     <h5>ショッピングカート</h5>
     <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, data: { confirm: '本当にカートを空にしますか？' }, class:"btn btn-danger btn-sm px-2 ml-auto" %>

@@ -52,7 +52,7 @@
     <table class="table-borderless table-sm">
       <tr>
         <th class="">支払方法</th>
-        <td><%= @order.payment_method %></td>
+        <td><%= @order.payment_method_i18n %></td>
       </tr>
       <tr>
         <th>お届け先</th>
@@ -70,7 +70,9 @@
       <%= f.hidden_field :name %>
       <%= f.hidden_field :end_user_id%>
       <%= f.hidden_field :total_payment, :value => @total_payment %>
-      <%= f.submit "注文を確定する", class:"btn btn-success"%>
+      <%= f.hidden_field :item_ids, :value => current_end_user.cart_items.pluck(:item_id)%>
+      <%= f.hidden_field :amounts, :value => current_end_user.cart_items.pluck(:amounts)%>
+      <%= f.submit "注文を確定する", class:"btn btn-success", data:{confirm: "購入を確定してよろしいですか？"}%>
     <% end %>
   </div>
 </div>

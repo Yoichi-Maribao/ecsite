@@ -1,7 +1,7 @@
 <div class="col">
   <h5>商品詳細</h5>
   <div class="row">
-    <%= attachment_image_tag @item, :image, fallback: "no_image.jpg", :size => '300x200', class: "" %>
+    <%= attachment_image_tag @item, :image, fallback: "no_image.jpg", :size => '300x200', fallback:'no_image.jpg' %>
     <div class="col-6">
       <table>
         <tr>

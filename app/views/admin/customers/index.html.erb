@@ -14,7 +14,7 @@
       <tr>
         <td><%= user.id %></td>
         <td>
-          <%= link_to user.last_name + user.first_name, '#' %>
+          <%= link_to user.last_name + user.first_name, admin_customer_path(user.id) %>
         </td>
         <td><%= user.email %></td>
         <% if user.is_active %>

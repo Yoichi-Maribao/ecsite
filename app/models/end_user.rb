@@ -8,4 +8,13 @@ class EndUser < ApplicationRecord
   has_many :cart_items
   has_many :orders
   has_many :addresses
+
+  def full_address
+    "〒#{self.postcode} #{self.address}"
+  end
+
+  def full_name
+    self.last_name + self.first_name
+  end
+
 end

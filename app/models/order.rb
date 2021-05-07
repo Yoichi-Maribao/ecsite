@@ -13,7 +13,6 @@ class Order < ApplicationRecord
   }
 
   belongs_to :end_user
-  has_many :order_details
   has_many :items, through: :order_details
 
   with_options presence: true do

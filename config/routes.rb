@@ -1,16 +1,34 @@
 Rails.application.routes.draw do
   devise_for :admins, path: :admin, skip: 'registrations'
-  devise_for :end_users, parh: :public
+  devise_for :end_users
+
+  devise_scope :end_user do
+    get '/logout', to: 'devise/sessions#destroy', as: :logout
+  end
 
   namespace :admin do
     get '/', to: 'homes#top'
+    resources :customers, except: [:create, :new, :destroy]
+    resources :genres, except: [:new, :show]
+    resources :items, except: :destroy
+    resources :orders, only: [:show, :update, :index]
+    resources :order_details, only: :update
   end
+
   scope module: :public do
     get 'customers/mypage', to: 'customers#show'
     get 'customers/edit'
-    patch 'customers/update'
-    delete 'customers/unsubscribe'
-    delete 'customers/withdraw'
+    patch 'customers', to: 'customers#update'
+    get 'customers/unsubscribe'
+    patch 'customers/withdraw', to: 'customers#withdraw'
+    resources :items, only: [:index, :show]
+    delete 'cart_items/destroy_all', to: 'cart_items#destroy_all'
+    resources :cart_items, except: [:new, :show, :edit]
+    get 'orders/thanks', to: 'orders#thanks'
+    resources :orders, except: [:edit, :update, :destroy] do
+    post 'confirm', to: 'orders#confirm'
+    end
+    resources :addresses, except: [:show, :new]
   end
 
   root to: 'public/homes#top'

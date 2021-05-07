@@ -1,19 +1,21 @@
-<h2>ログイン</h2>
-<h3>会員の方はこちらからログイン</h3>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス"%>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="col">
+  <h2>ログイン</h2>
+  <h3>会員の方はこちらからログイン</h3>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-group">
+      <%= f.label :email, "メールアドレス"%>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password, "パスワード" %>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-<h3>会員登録がお済みでない方</h3>
-<%= render "end_users/shared/links" %>
+    <div class="actions">
+      <%= f.submit "ログイン", class:"btn btn-primary btn-sm px-5" %>
+    </div>
+  <% end %>
+  <h3>会員登録がお済みでない方</h3>
+  <%= render "end_users/shared/links" %>
+</div>

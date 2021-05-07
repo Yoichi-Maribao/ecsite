@@ -1,0 +1,18 @@
+<div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
+  <div class="row mx-auto">
+    <%= attachment_image_tag @item, :image, fallback: "no_image.jpg", :size => '300x200', class: "mr-lg-3 mx-auto" %>
+    <div class="col-md col-sm">
+      <h3><%= @item.name %></h3>
+      <p><%= @item.description %></p>
+      <p>¥<%= @item.add_tax.to_s(:delimited) %><small>(税込)</small></p>
+
+      <div class="row form-group ml-1">
+        <%= form_with model:@item_new, url: cart_items_path, local: true do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.select :amount, (1..10).to_a, include_blank: "個数選択" %>
+          <%= f.submit "カートに入れる", class:"btn btn-success btn-sm" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

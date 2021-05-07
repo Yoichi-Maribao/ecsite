@@ -16,3 +16,22 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+.fa-plus::before {
+  box-shadow: 1px 1px  rgba(0,0,0,0.6);
+  -moz-box-shadow: 1px 1px  rgba(0,0,0,0.6);
+  -webkit-box-shadow: 1px 1px  rgba(0,0,0,0.6);
+  -o-box-shadow: 1px 1px  rgba(0,0,0,0.6);
+  border-radius:10px;
+}
+
+.no-spin::-webkit-inner-spin-button,
+.no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance:textfield;
+}
+
+.table-sm td {
+  line-height: 50px;
+}

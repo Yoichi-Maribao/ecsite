@@ -1,0 +1,27 @@
+<div class="col">
+  <h5>配送先登録 / 一覧</h5>
+  <%= render 'form', address: @address, submit: @submit %>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.postcode %></td>
+        <td><%= address.address%></td>
+        <td><%= address.name %></td>
+        <td colspan="2">
+          <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-success btn-sm" %>
+          <%= link_to "削除する", address_path(address.id), method: :delete, class:"btn btn-danger btn-sm ml-auto", data: {confirm: "本当に削除しますか？"} %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
